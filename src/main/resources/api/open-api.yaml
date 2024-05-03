@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API CRUD w2m
+  description:
+    Gestión CRUD de naves espaciales de series y películas.<br>
+servers:
+  - url: /domain/path-example
+tags:
+  - name: Starship
+    description: |-
+      Métodos del controlador <br>
+paths:
+  /v1/starship:
+    $ref: "./starship-api.yml#/paths/~1v1~1starship"
+  /v1/starship/pagination:
+    $ref: "./starship-api.yml#/paths/~1v1~1starship~1pagination"
+  /v1/starship/byName:
+    $ref: "./starship-api.yml#/paths/~1v1~1starship~1byName"
+  /v1/login:
+    $ref: "./login-api.yml#/paths/~1v1~1login"

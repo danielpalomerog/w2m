@@ -1,0 +1,353 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API Starship
+  description:
+    Informacion básica de la api que ofrece el microservicio<br>
+servers:
+  - url: /starship/
+tags:
+  - name: Starship
+    description: |- 
+      Descripción de los métodos del controlador<br><sup><i>(EN)</i></sup>
+paths:
+  /v1/starship:
+    get:
+      tags:
+        - Starship
+      summary: "Consultar nave por ID"
+      description: |-
+        <h3>Descripción⠀<small>¦ Description:</small></h3>
+        Método para devolver una nave por ID.<br>
+      operationId: getStarshipById
+      parameters:
+        - name: id
+          in: query
+          description: |- 
+            Id de la nave
+          required: false
+          schema:
+            type: integer
+            format: int64
+            example: 123
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StarshipResponse"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "404":
+          $ref: "#/components/responses/404"
+
+    post:
+      tags:
+        - Starship
+      summary: "Creacion de nueva nave"
+      description: |-
+        <h3>Descripción⠀<small>¦ Description:</small></h3>
+        Método para crear una nueva nave.<br>
+      operationId: createStarship
+      parameters:
+        - name: starship
+          in: query
+          description: |-
+            Objeto del tipo de la entidad
+          schema:
+            $ref: "#/components/schemas/Starship"
+      responses:
+        "201":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StarshipResponse"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "404":
+          $ref: "#/components/responses/404"
+
+    put:
+      tags:
+        - Starship
+      summary: "Actualizar datos nave"
+      description: |-
+        <h3>Descripción⠀<small>¦ Description:</small></h3>
+        Método para actualizar la info de una nave.<br>
+      operationId: updateStarship
+      parameters:
+        - name: starship
+          in: query
+          description: |-
+            Objeto del tipo de la entidad
+          schema:
+            $ref: "#/components/schemas/StarshipCompleted"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StarshipResponse"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "404":
+          $ref: "#/components/responses/404"
+
+    delete:
+      tags:
+        - Starship
+      summary: "Borrar nave"
+      description: |-
+        <h3>Descripción⠀<small>¦ Description:</small></h3>
+        Método para borrar una nave.<br>
+      operationId: deleteStarship
+      parameters:
+        - name: id
+          in: query
+          description: |-
+            Id de la nave
+          required: false
+          schema:
+            type: integer
+            format: int64
+            example: 123
+      responses:
+        "200":
+          description: OK
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "404":
+          $ref: "#/components/responses/404"
+
+  /v1/starship/pagination:
+    get:
+      tags:
+        - Starship
+      summary: "Consultar todas las naves"
+      description: |-
+        <h3>Descripción⠀<small>¦ Description:</small></h3>
+        Método para devolver una entidad de ejemplo.<br>
+      operationId: getAllStarship
+      parameters:
+        - name: page
+          in: query
+          description: |-
+            Página
+          required: false
+          schema:
+            type: integer
+            format: int64
+            example: 123
+            default: 0
+        - name: limit
+          in: query
+          description: |-
+            Límite de elementos
+          required: false
+          schema:
+            type: integer
+            format: int64
+            example: 123
+            default: 10
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StarshipListResponse"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "404":
+          $ref: "#/components/responses/404"
+
+  /v1/starship/byName:
+    get:
+      tags:
+        - Starship
+      summary: "Consultar naves por su nombre"
+      description: |-
+        <h3>Descripción⠀<small>¦ Description:</small></h3>
+        Método para devolver una nave por su nombre.<br>
+      operationId: getStarshipByName
+      parameters:
+        - name: name
+          in: query
+          description: |-
+            Obtener nave por nombre
+          required: false
+          schema:
+            type: string
+            example: AAaa
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StarshipListResponse"
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "404":
+          $ref: "#/components/responses/404"
+
+components:
+  responses:
+    "400":
+      description: |-
+        <b>`Bad Request`</b><br><br>
+        El servidor no pudo entender la solicitud debido a una sintaxis incorrecta. El cliente NO DEBE repetir la solicitud sin modificaciones.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            title: Missing mandatory fields.
+            detail: The input fields are not correct
+            errors:
+              - message: Bad Request
+                businessMessage: The xyz field is mandatory
+            instance: "022"
+            type: /v1/name/pathSuffix
+    "401":
+      description: |-
+        <b>`Unauthorized`</b><br><br>
+        La solicitud requiere la autenticación del usuario.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            title: Authorization Error
+            detail: Client credentials are invalid
+            instance: "033"
+            type: /v1/name/pathSuffix
+    "404":
+      description: |-
+        <b>`Not Found`</b><br><br>
+        El servidor no ha encontrado nada que coincida con la URI de solicitud.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            title: Not Found
+            detail: Path not found
+            instance: "404"
+            type: /v1/name/pathSuffix
+  schemas:
+    Starship:
+      type: object
+      description: |-
+        <b>`StarshipDto`</b><br><br>
+        Entidad de nave
+      properties:
+        name:
+          type: string
+          description: |-
+            Nombre de la nave.
+        movie:
+          type: string
+          description: |-
+            Nombre de la película en la que aparece.
+    StarshipCompleted:
+      type: object
+      description: |-
+        <b>`StarshipDto`</b><br><br>
+        Entidad de la nave
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: |-
+            Identificador numérico de la respuesta.
+        name:
+          type: string
+          description: |-
+            Nombre de la nave.
+        movie:
+          type: string
+          description: |-
+            Nombre de la película en la que aparece.
+    StarshipResponse:
+      type: object
+      description: |-
+        <b>`Starship Response`</b><br><br>
+        Entidad de la nave
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: |-
+            Identificador numerico de la respuesta.
+        name:
+          type: string
+          description: |-
+            Nombre de la nave.
+        movie:
+          type: string
+          description: |-
+            Nombre de la pelicula en la que aparece.
+    StarshipListResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/StarshipResponse"
+    Error:
+      type: object
+      properties:
+        title:
+          maximum: 50
+          type: string
+          description: |- 
+            Mensaje de error técnico.
+        detail:
+          maximum: 50
+          type: string
+          description: |- 
+            Mensaje a presentar al cliente.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorErrors'
+        instance:
+          maximum: 50
+          type: string
+          description: |- 
+            Código de catálogo de errores.
+        type:
+          maximum: 100
+          type: string
+          description: |- 
+            Dirección donde se produce el error.
+    ErrorErrors:
+      properties:
+        message:
+          type: string
+          description: |- 
+            Mensaje del detalle.
+        businessMessage:
+          type: string
+          description: |- 
+            Mensaje de error de negocio.
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      in: header
+      bearerFormat: JWT

@@ -1,0 +1,127 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: API Login
+  description:
+    Informacion básica de la api que ofrece el microservicio<br>
+servers:
+  - url: /login/
+tags:
+  - name: Login
+    description: |- 
+      Descripción de los metodos del controlador<br>
+paths:
+  /v1/login:
+    get:
+      tags:
+        - Login
+      summary: "Login"
+      description: |-
+        <h3>Descripción</h3>
+        Metodo para hacer login en la API.<br>
+      operationId: login
+      parameters:
+        - name: username
+          in: query
+          description: |- 
+            Nombre de usuario
+          required: true
+          schema:
+            type: string
+            example: aaAA
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+        "400":
+          $ref: "#/components/responses/400"
+        "401":
+          $ref: "#/components/responses/401"
+        "404":
+          $ref: "#/components/responses/404"
+
+components:
+  responses:
+    "400":
+      description: |- 
+        <b>`Bad Request`</b><br><br>
+        El servidor no pudo entender la solicitud debido a una sintaxis incorrecta. El cliente NO DEBE repetir la solicitud sin modificaciones.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            title: Missing mandatory fields.
+            detail: The input fields are not correct
+            errors:
+              - message: Bad Request
+                businessMessage: The xyz field is mandatory
+            instance: "022"
+            type: /v1/name/pathSuffix
+    "401":
+      description: |- 
+        <b>`Unauthorized`</b><br><br>
+        La solicitud requiere la autenticación del usuario.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            title: Authorization Error
+            detail: Client credentials are invalid
+            instance: "033"
+            type: /v1/name/pathSuffix
+    "404":
+      description: |- 
+        <b>`Not Found`</b><br><br>
+        El servidor no ha encontrado nada que coincida con la URI de solicitud.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/Error"
+          example:
+            title: Not Found
+            detail: Path not found
+            instance: "404"
+            type: /v1/name/pathSuffix
+  schemas:
+    Error:
+      type: object
+      properties:
+        title:
+          maximum: 50
+          type: string
+          description: |- 
+            Mensaje de error técnico.
+        detail:
+          maximum: 50
+          type: string
+          description: |- 
+            Mensaje a presentar al cliente.
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ErrorErrors'
+        instance:
+          maximum: 50
+          type: string
+          description: |- 
+            Código de catálogo de errores.
+        type:
+          maximum: 100
+          type: string
+          description: |- 
+            Dirección donde se produce el error.
+    ErrorErrors:
+      properties:
+        message:
+          type: string
+          description: |- 
+            Mensaje del detalle.
+        businessMessage:
+          type: string
+          description: |- 
+            Mensaje de error de negocio.

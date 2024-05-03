@@ -1,0 +1,65 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /@project.artifactId@/api
+  shutdown: graceful
+  tomcat.threads.max: 400
+
+management:
+  server:
+    port: 8091
+    ssl:
+      enabled: false
+  endpoints:
+    web:
+      base-path: /
+
+spring:
+  jackson:
+    serialization:
+      write_dates_as_timestamps: false
+  application:
+    name: @project.artifactId@
+  main:
+    allow-bean-definition-overriding: true
+  data:
+    jpa.repositories.enabled: true
+    redis:
+      host: localhost
+      port: 6379
+      url: redis://localhost:6379
+      password: psw
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        format_sql: true
+        default_schema: w2m
+    hibernate:
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    open-in-view: false
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    hikari:
+      maxLifeTime: 300000
+      idleTimeout: 10000
+      maximumPoolSize: 40
+  liquibase:
+    default-schema: ${spring.jpa.properties.hibernate.default_schema}
+
+
+logging:
+  level:
+    root: INFO
+    com.knowmad: DEBUG
+    org.hibernate.SQL_SLOW: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.stat: DEBUG
+    org.springframework.web.reactive.function.client.ExchangeFunctions: TRACE

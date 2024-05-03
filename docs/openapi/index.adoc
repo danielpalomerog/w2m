@@ -1,0 +1,883 @@
+= API CRUD w2m
+team@openapitools.org
+1.0.0
+:toc: left
+:numbered:
+:toclevels: 4
+:source-highlighter: highlightjs
+:keywords: openapi, rest, API CRUD w2m
+:specDir: 
+:snippetDir: 
+:generator-template: v1 2019-12-20
+:info-url: https://openapi-generator.tech
+:app-name: API CRUD w2m
+
+== Introduction
+Gestión CRUD de naves espaciales de series y películas.<br>
+
+
+// markup not found, no include::{specDir}intro.adoc[opts=optional]
+
+
+
+== Endpoints
+
+
+[.Login]
+=== Login
+
+
+[.login]
+==== login
+
+`GET /v1/login`
+
+Login
+
+===== Description
+
+<h3>Descripción</h3> Metodo para hacer login en la API.<br>
+
+
+// markup not found, no include::{specDir}v1/login/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| username
+| Nombre de usuario 
+| X
+| null
+| 
+
+|===
+
+
+===== Return Type
+
+
+<<String>>
+
+
+===== Content Type
+
+* text/plain
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<String>>
+
+
+| 400
+| &lt;b&gt;&#x60;Bad Request&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no pudo entender la solicitud debido a una sintaxis incorrecta. El cliente NO DEBE repetir la solicitud sin modificaciones.
+|  <<Error>>
+
+
+| 401
+| &lt;b&gt;&#x60;Unauthorized&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; La solicitud requiere la autenticación del usuario.
+|  <<Error>>
+
+
+| 404
+| &lt;b&gt;&#x60;Not Found&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no ha encontrado nada que coincida con la URI de solicitud.
+|  <<Error>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}v1/login/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}v1/login/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :v1/login/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}v1/login/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.Starship]
+=== Starship
+
+
+[.createStarship]
+==== createStarship
+
+`POST /v1/starship`
+
+Creacion de nueva nave
+
+===== Description
+
+<h3>Descripción⠀<small>¦ Description:</small></h3> Método para crear una nueva nave.<br>
+
+
+// markup not found, no include::{specDir}v1/starship/POST/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| starship
+| Objeto del tipo de la entidad 
+| -
+| null
+| 
+
+|===
+
+
+===== Return Type
+
+<<StarshipResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 201
+| OK
+|  <<StarshipResponse>>
+
+
+| 400
+| &lt;b&gt;&#x60;Bad Request&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no pudo entender la solicitud debido a una sintaxis incorrecta. El cliente NO DEBE repetir la solicitud sin modificaciones.
+|  <<Error>>
+
+
+| 401
+| &lt;b&gt;&#x60;Unauthorized&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; La solicitud requiere la autenticación del usuario.
+|  <<Error>>
+
+
+| 404
+| &lt;b&gt;&#x60;Not Found&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no ha encontrado nada que coincida con la URI de solicitud.
+|  <<Error>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}v1/starship/POST/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}v1/starship/POST/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :v1/starship/POST/POST.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}v1/starship/POST/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.deleteStarship]
+==== deleteStarship
+
+`DELETE /v1/starship`
+
+Borrar nave
+
+===== Description
+
+<h3>Descripción⠀<small>¦ Description:</small></h3> Método para borrar una nave.<br>
+
+
+// markup not found, no include::{specDir}v1/starship/DELETE/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| id
+| Id de la nave 
+| -
+| null
+| 
+
+|===
+
+
+===== Return Type
+
+
+
+-
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<>>
+
+
+| 400
+| &lt;b&gt;&#x60;Bad Request&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no pudo entender la solicitud debido a una sintaxis incorrecta. El cliente NO DEBE repetir la solicitud sin modificaciones.
+|  <<Error>>
+
+
+| 401
+| &lt;b&gt;&#x60;Unauthorized&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; La solicitud requiere la autenticación del usuario.
+|  <<Error>>
+
+
+| 404
+| &lt;b&gt;&#x60;Not Found&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no ha encontrado nada que coincida con la URI de solicitud.
+|  <<Error>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}v1/starship/DELETE/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}v1/starship/DELETE/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :v1/starship/DELETE/DELETE.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}v1/starship/DELETE/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.getAllStarship]
+==== getAllStarship
+
+`GET /v1/starship/pagination`
+
+Consultar todas las naves
+
+===== Description
+
+<h3>Descripción⠀<small>¦ Description:</small></h3> Método para devolver una entidad de ejemplo.<br>
+
+
+// markup not found, no include::{specDir}v1/starship/pagination/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| page
+| Página 
+| -
+| 0
+| 
+
+| limit
+| Límite de elementos 
+| -
+| 10
+| 
+
+|===
+
+
+===== Return Type
+
+array[<<StarshipResponse>>]
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+| List[<<StarshipResponse>>] 
+
+
+| 400
+| &lt;b&gt;&#x60;Bad Request&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no pudo entender la solicitud debido a una sintaxis incorrecta. El cliente NO DEBE repetir la solicitud sin modificaciones.
+|  <<Error>>
+
+
+| 401
+| &lt;b&gt;&#x60;Unauthorized&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; La solicitud requiere la autenticación del usuario.
+|  <<Error>>
+
+
+| 404
+| &lt;b&gt;&#x60;Not Found&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no ha encontrado nada que coincida con la URI de solicitud.
+|  <<Error>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}v1/starship/pagination/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}v1/starship/pagination/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :v1/starship/pagination/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}v1/starship/pagination/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.getStarshipById]
+==== getStarshipById
+
+`GET /v1/starship`
+
+Consultar nave por ID
+
+===== Description
+
+<h3>Descripción⠀<small>¦ Description:</small></h3> Método para devolver una nave por ID.<br>
+
+
+// markup not found, no include::{specDir}v1/starship/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| id
+| Id de la nave 
+| -
+| null
+| 
+
+|===
+
+
+===== Return Type
+
+<<StarshipResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<StarshipResponse>>
+
+
+| 400
+| &lt;b&gt;&#x60;Bad Request&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no pudo entender la solicitud debido a una sintaxis incorrecta. El cliente NO DEBE repetir la solicitud sin modificaciones.
+|  <<Error>>
+
+
+| 401
+| &lt;b&gt;&#x60;Unauthorized&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; La solicitud requiere la autenticación del usuario.
+|  <<Error>>
+
+
+| 404
+| &lt;b&gt;&#x60;Not Found&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no ha encontrado nada que coincida con la URI de solicitud.
+|  <<Error>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}v1/starship/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}v1/starship/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :v1/starship/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}v1/starship/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.getStarshipByName]
+==== getStarshipByName
+
+`GET /v1/starship/byName`
+
+Consultar naves por su nombre
+
+===== Description
+
+<h3>Descripción⠀<small>¦ Description:</small></h3> Método para devolver una nave por su nombre.<br>
+
+
+// markup not found, no include::{specDir}v1/starship/byName/GET/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| name
+| Obtener nave por nombre 
+| -
+| null
+| 
+
+|===
+
+
+===== Return Type
+
+array[<<StarshipResponse>>]
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+| List[<<StarshipResponse>>] 
+
+
+| 400
+| &lt;b&gt;&#x60;Bad Request&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no pudo entender la solicitud debido a una sintaxis incorrecta. El cliente NO DEBE repetir la solicitud sin modificaciones.
+|  <<Error>>
+
+
+| 401
+| &lt;b&gt;&#x60;Unauthorized&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; La solicitud requiere la autenticación del usuario.
+|  <<Error>>
+
+
+| 404
+| &lt;b&gt;&#x60;Not Found&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no ha encontrado nada que coincida con la URI de solicitud.
+|  <<Error>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}v1/starship/byName/GET/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}v1/starship/byName/GET/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :v1/starship/byName/GET/GET.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}v1/starship/byName/GET/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[.updateStarship]
+==== updateStarship
+
+`PUT /v1/starship`
+
+Actualizar datos nave
+
+===== Description
+
+<h3>Descripción⠀<small>¦ Description:</small></h3> Método para actualizar la info de una nave.<br>
+
+
+// markup not found, no include::{specDir}v1/starship/PUT/spec.adoc[opts=optional]
+
+
+
+===== Parameters
+
+
+
+
+
+====== Query Parameters
+
+[cols="2,3,1,1,1"]
+|===
+|Name| Description| Required| Default| Pattern
+
+| starship
+| Objeto del tipo de la entidad 
+| -
+| null
+| 
+
+|===
+
+
+===== Return Type
+
+<<StarshipResponse>>
+
+
+===== Content Type
+
+* application/json
+
+===== Responses
+
+.HTTP Response Codes
+[cols="2,3,1"]
+|===
+| Code | Message | Datatype
+
+
+| 200
+| OK
+|  <<StarshipResponse>>
+
+
+| 400
+| &lt;b&gt;&#x60;Bad Request&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no pudo entender la solicitud debido a una sintaxis incorrecta. El cliente NO DEBE repetir la solicitud sin modificaciones.
+|  <<Error>>
+
+
+| 401
+| &lt;b&gt;&#x60;Unauthorized&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; La solicitud requiere la autenticación del usuario.
+|  <<Error>>
+
+
+| 404
+| &lt;b&gt;&#x60;Not Found&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt; El servidor no ha encontrado nada que coincida con la URI de solicitud.
+|  <<Error>>
+
+|===
+
+===== Samples
+
+
+// markup not found, no include::{snippetDir}v1/starship/PUT/http-request.adoc[opts=optional]
+
+
+// markup not found, no include::{snippetDir}v1/starship/PUT/http-response.adoc[opts=optional]
+
+
+
+// file not found, no * wiremock data link :v1/starship/PUT/PUT.json[]
+
+
+ifdef::internal-generation[]
+===== Implementation
+
+// markup not found, no include::{specDir}v1/starship/PUT/implementation.adoc[opts=optional]
+
+
+endif::internal-generation[]
+
+
+[#models]
+== Models
+
+
+[#Error]
+=== _Error_ 
+
+
+
+[.fields-Error]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| title
+| 
+| String 
+| Mensaje de error técnico.
+|  
+
+| detail
+| 
+| String 
+| Mensaje a presentar al cliente.
+|  
+
+| errors
+| 
+| List  of <<ErrorErrors>>
+| 
+|  
+
+| instance
+| 
+| String 
+| Código de catálogo de errores.
+|  
+
+| type
+| 
+| String 
+| Dirección donde se produce el error.
+|  
+
+|===
+
+
+[#ErrorErrors]
+=== _ErrorErrors_ 
+
+
+
+[.fields-ErrorErrors]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| message
+| 
+| String 
+| Mensaje del detalle.
+|  
+
+| businessMessage
+| 
+| String 
+| Mensaje de error de negocio.
+|  
+
+|===
+
+
+[#Starship]
+=== _Starship_ 
+
+&lt;b&gt;&#x60;StarshipDto&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt;
+Entidad de nave
+
+[.fields-Starship]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| name
+| 
+| String 
+| Nombre de la nave.
+|  
+
+| movie
+| 
+| String 
+| Nombre de la película en la que aparece.
+|  
+
+|===
+
+
+[#StarshipCompleted]
+=== _StarshipCompleted_ 
+
+&lt;b&gt;&#x60;StarshipDto&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt;
+Entidad de la nave
+
+[.fields-StarshipCompleted]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| id
+| 
+| Long 
+| Identificador numérico de la respuesta.
+| int64 
+
+| name
+| 
+| String 
+| Nombre de la nave.
+|  
+
+| movie
+| 
+| String 
+| Nombre de la película en la que aparece.
+|  
+
+|===
+
+
+[#StarshipResponse]
+=== _StarshipResponse_ 
+
+&lt;b&gt;&#x60;Starship Response&#x60;&lt;/b&gt;&lt;br&gt;&lt;br&gt;
+Entidad de la nave
+
+[.fields-StarshipResponse]
+[cols="2,1,2,4,1"]
+|===
+| Field Name| Required| Type| Description| Format
+
+| id
+| 
+| Long 
+| Identificador numerico de la respuesta.
+| int64 
+
+| name
+| 
+| String 
+| Nombre de la nave.
+|  
+
+| movie
+| 
+| String 
+| Nombre de la pelicula en la que aparece.
+|  
+
+|===
+
+

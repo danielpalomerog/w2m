@@ -1,0 +1,87 @@
+= base-keos-microservice =
+{localdatetime}
+:toc:
+:doctype: book
+:docinfo:
+
+== Introducción
+El objetivo de este microservicio es hacer un mantenimiento CRUD de naves espaciales de series y películas, basado en spring boot 3.1.4 y java 17.
+
+== Diagrama General
+
+include::docs/openapi/index.adoc[leveloffset=3]
+
+== Otros
+=== Instalación y funcionamiento
+El microservicio utiliza:
+
+* Postgres
+* Redis
+
+==== Instalar Postgres
+
+* Tener instalado _docker_
+
+* Ejecutar un contenedor de docker con Postgres
+
+[source]
+-------------------------------------------
+sudo docker run -d --name postgres -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -v postgres-data:/var/lib/postgresql/data postgres:14
+-------------------------------------------
+
+Para acceder y gestionar la BD local local se pueden utilizar herramientas como:
+
+* DBeaver Community
+* PgAdmin
+
+==== Instalar Redis
+
+* Tener instalado _docker_
+
+* Ejecutar un contenedor de docker con Redis
+
+[source]
+-------------------------------------------
+sudo docker run -d -p 6379:6379 --name redis_container redis:alpine redis-server --requirepass psw
+-------------------------------------------
+
+==== Instalar el microservicio Java
+
+* Tendremos que crear un DockerFile
+
+[source]
+-------------------------------------------
+# Usa la imagen base de OpenJDK 17
+FROM openjdk:17
+
+# Establece el directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copia el archivo JAR de tu aplicación al contenedor
+COPY target/w2m-0.0.1-SNAPSHOT.jar /app/w2m-0.0.1-SNAPSHOT.jar
+
+# Comando para ejecutar la aplicación cuando el contenedor se inicie
+CMD ["java", "-jar", "w2m-0.0.1-SNAPSHOT.jar"]
+-------------------------------------------
+
+* Tras esto, en el directorio del DockerFile abrimos una terminal para construir la imagen
+
+[source]
+-------------------------------------------
+docker build -t w2m-0.0.1-SNAPSHOT .
+-------------------------------------------
+
+* Finalmente ejecutamos el contenedor con la imagen generada anteriormente
+
+[source]
+-------------------------------------------
+docker run -d --name w2m w2m-0.0.1-SNAPSHOT
+-------------------------------------------
+
+==== Swagger
+Url del swagger para local
+
+[source]
+-------------------------------------------
+http://localhost:8080/w2m/api/swagger-ui/index.html#/
+-------------------------------------------
